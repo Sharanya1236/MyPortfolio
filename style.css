@@ -1,0 +1,864 @@
+/* General Body & HTML Reset */
+:root {
+    --primary-color: #007bff; /* A vibrant blue, similar to Harshith's accent */
+    --secondary-color: #6c757d;
+    --background-dark: #0a192f;    /* Dark blue for header, footer, etc. (Matches Harshith) */
+    --background-light: #112240; /* Slightly lighter blue for main sections (Matches Harshith) */
+    --text-color: #ffffff;
+    --heading-color: #ffffff;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+    --border-color: #444;
+    --card-background: #1a273c; /* Slightly darker than background-light for cards */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for nav links */
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-dark); /* Global dark blue background */
+    color: var(--text-color);
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+.container {
+    max-width: 1300px; /* Optimized width to reduce side space on larger screens */
+    margin: 0 auto;
+    padding: 0 40px; /* Consistent side padding within the container */
+}
+
+section {
+    padding: 80px 0; /* Standard section vertical padding */
+    position: relative;
+    overflow: hidden;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--background-light); /* Uses the slightly lighter blue */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8em; /* Adjusted section title size */
+    margin-bottom: 50px;
+    color: var(--heading-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Links & Buttons */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--link-hover-color);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: translateX(3px);
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Header & Navigation */
+.header {
+    background-color: var(--background-dark); /* Uses darker blue */
+    box-shadow: 0 2px 10px var(--shadow-color);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Padding for the navbar itself */
+}
+
+.nav-logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--heading-color);
+    transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin-left: 40px;
+}
+
+.nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none; /* Hidden by default on desktop */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Home Section (Hero) */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Optional: If you want a background image only for the hero, use this. Otherwise, body background covers. */
+    /* background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('hero-background.jpg') no-repeat center center/cover; */
+    /* background-attachment: fixed; */
+    padding-top: 80px;
+padding-bottom: 0px /* Account for fixed header */
+}
+
+/* Home Section (Hero) - Styling for side-by-side layout */
+.hero-container {
+    display: flex;
+    align-items: center; /* Vertically center content */
+    justify-content: space-between; /* Puts space between text and image */
+    gap: 80px; /* Space between the two columns (increased to match Harshith's) */
+    text-align: left; /* Align text content to the left */
+    flex-wrap: wrap; /* Allows stacking on smaller screens */
+    min-height: 80vh; /* Ensure hero section takes up enough vertical space */
+    padding: 100px 0; /* Add some vertical padding */
+    /* REMOVED: .hero-section .container { max-width: 800px; } - This was the conflict! */
+}
+
+.hero-text-content {
+    flex: 1 1 55%; /* Takes about 55% of space, can shrink/grow */
+    min-width: 300px; /* Ensures text content doesn't get too small */
+}
+
+.hero-description {
+    font-size: 1em; /* Adjusted description font size */
+    color: #ccc;
+    margin-top: 20px;
+    max-width: 500px; /* Control width of the description */
+    line-height: 1.8;
+}
+
+.hero-image-container {
+    flex: 1 1 35%; /* Takes about 35% of space, can shrink/grow */
+    display: flex; /* Use flex to center the image if needed */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-width: 250px; /* Minimum width for the image container */
+    order: 2; /* Ensures image is on the right by default */
+}
+
+.hero-profile-pic {
+    width: 100%; /* Makes image fill its container */
+    max-width: 300px; /* Adjusted to match  image size more closely */
+    height: auto;
+    border-radius: 50%; /* Makes it circular */
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4); /* Blue glow/shadow */
+    border: 5px solid var(--primary-color); /* Optional border for extra emphasis */
+    object-fit: cover; /* Ensures image covers area without distortion */
+}
+
+
+/* Adjustments for existing hero text elements */
+.hero-section .greeting {
+    font-size: 1.5em; /* Adjusted greeting size */
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.hero-section .name {
+    font-size: 3.5em; /* Adjusted "Your Name" size for overall balance */
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+    line-height: 1.1;
+}
+
+.typewriter-container {
+    min-height: 50px; /* Ensure space for typewriter text */
+    font-size: 2.2em; /* Adjusted typewriter text size */
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 15px; /* Adjust margin here */
+}
+
+/* Override center alignment for social links/button in hero section */
+.hero-section .social-links {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left; /* Align to left */
+
+    /* ADDED/MODIFIED: Flexbox for controlling social icon layout */
+    display: flex;
+    justify-content: flex-start; /* Aligns social icons to the left */
+    align-items: center;
+    flex-wrap: wrap; /* Allows icons to wrap to next line if space is limited */
+    gap: 15px; /* Consistent gap between social icons */
+}
+
+/* NEW STYLES for the circular social icons (assuming Font Awesome) */
+.social-icon {
+    display: flex; /* Use flexbox to center the icon inside */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 50px; /* Controls the overall size of the circular button */
+    height: 50px; /* Makes it a perfect circle with width */
+    border: 2px solid var(--primary-color); /* The blue outline */
+    border-radius: 50%; /* Makes it circular */
+    color: var(--text-color); /* Initial color of the icon inside */
+    font-size: 1.5em; /* Size of the Font Awesome icon inside */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.social-icon:hover {
+    background-color: var(--primary-color); /* Fill with primary color on hover */
+    color: var(--background-dark); /* Change icon color on hover for contrast */
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4); /* Subtle blue glow on hover */
+}
+
+/* Ensure the Font Awesome icon itself scales within the circle */
+.social-icon i {
+    line-height: 1; /* Helps vertical alignment of the icon */
+}
+
+
+.hero-section .btn {
+    margin-left: 0; /* Align button to left */
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.about-image {
+    flex: 1 1 300px;
+    text-align: center;
+    min-width: 250px;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: translateY(-5px);
+}
+
+.about-text {
+    flex: 2 1 500px;
+    text-align: left;
+}
+
+.about-text h3 {
+    font-size: 1.8em; /* Adjusted "Hi, I'm Your Name" in About section */
+    margin-bottom: 20px;
+    color: var(--heading-color);
+}
+
+.about-text p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.about-text .btn-secondary {
+    margin-top: 20px;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.skill-item {
+    background-color: var(--card-background); /* Uses card background color */
+    padding: 30px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 4px solid var(--primary-color); /* Bottom border accent */
+}
+
+.skill-item:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
+.skill-icon {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.skill-item span {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Portfolio Section */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+.portfolio-item {
+    background-color: var(--card-background); /* Uses card background color */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
+.portfolio-thumbnail {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Cover the area without distortion */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-thumbnail {
+    transform: scale(1.05);
+}
+
+.portfolio-item h3 {
+    font-size: 1.8em;
+    margin: 20px 0 10px;
+    color: var(--heading-color);
+    padding: 0 20px;
+}
+
+.portfolio-item p {
+    font-size: 1em;
+    color: #ccc;
+    padding: 0 20px;
+    flex-grow: 1; /* Allows description to take up available space */
+}
+
+.portfolio-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.portfolio-links .btn-link {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1.05em;
+    display: flex;
+    align-items: center;
+}
+
+.portfolio-links .btn-link i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.portfolio-links .btn-link:hover {
+    color: var(--link-hover-color);
+}
+
+/* Contact Section */
+.contact-intro {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #ccc;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.contact-info-item {
+    background-color: var(--card-background); /* Uses card background color */
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info-item:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
+.contact-info-item .icon {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.contact-info-item span {
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.contact-info-item a {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.contact-info-item a:hover {
+    color: var(--primary-color);
+}
+
+.contact-social {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--background-dark); /* Uses darker blue */
+    color: #ccc;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+.footer p {
+    margin-bottom: 5px;
+}
+
+.footer p:last-child {
+    margin-bottom: 0;
+    font-style: italic;
+    color: #aaa;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Tablets and smaller desktops (992px) */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 20px; /* Adjust container padding for smaller screens */
+    }
+
+    .navbar {
+        padding: 0 20px; /* Keep consistent padding for navbar */
+    }
+
+    .nav-menu {
+        margin-left: 20px;
+    }
+
+    .nav-item {
+        margin-left: 25px;
+    }
+
+    .hero-section .greeting {
+        font-size: 1.3em; /* Adjusted greeting size for tablets */
+    }
+
+    .hero-section .name {
+        font-size: 3.5em; /* Adjusted "Your Name" size for tablets */
+    }
+
+    .typewriter-container {
+        font-size: 2em; /* Adjusted typewriter text size for tablets */
+    }
+
+    .hero-container {
+        flex-direction: column; /* Stack text and image on smaller screens */
+        text-align: center; /* Center align text when stacked */
+        padding: 40px 0; /* Adjust vertical padding for smaller screens */
+        min-height: auto; /* Allow height to adjust */
+        gap: 40px; /* Reduce gap when stacked */
+    }
+    .hero-text-content {
+        order: 2; /* Text below image */
+        text-align: center;
+        flex: 1 1 100%; /* Allow text content to take full width */
+        min-width: unset; /* Remove min-width to be more flexible */
+    }
+    .hero-image-container {
+        order: 1; /* Image above text */
+        margin-bottom: 30px; /* Space between image and text */
+        flex: 1 1 auto; /* Adjust flex behavior */
+        min-width: unset; /* Remove min-width */
+        max-width: 280px; /* Set a max width for the image container when stacked */
+    }
+    .hero-profile-pic {
+        max-width: 250px; /* CONTROL IMAGE SIZE WHEN STACKED: Adjusted this value */
+        width: 100%; /* Ensure it fills its smaller container */
+    }
+    .hero-section .social-links,
+    .hero-section .btn {
+        text-align: center; /* Center align social links/button */
+        display: flex; /* Use flex to center items within social links */
+        justify-content: center; /* Center align social links horizontally */
+        flex-wrap: wrap; /* Allow social icons to wrap if space is limited */
+    }
+    .hero-section .btn {
+        margin: 20px auto 0; /* Center button and add top margin */
+    }
+    .hero-section .greeting,
+    .hero-section .name,
+    .typewriter-container,
+    .hero-description {
+        text-align: center; /* Ensure all text is centered */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-section .name {
+        font-size: 3.5em; /* Adjust name size for smaller screens */
+    }
+    .typewriter-container {
+        font-size: 2em; /* Adjust typewriter size for smaller screens */
+    }
+
+    /* Adjust size for tablets */
+    .social-icon {
+        width: 45px; /* Slightly smaller size for tablets */
+        height: 45px;
+        font-size: 1.3em; /* Adjust icon size */
+    }
+    .hero-section .social-links {
+        justify-content: center; /* Center align social links horizontally when stacked */
+        gap: 12px; /* Adjust gap for tablets */
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text {
+        order: 2; /* Puts text below image on smaller screens */
+        text-align: center;
+    }
+
+    .about-image {
+        order: 1; /* Puts image above text */
+    }
+
+    .skills-grid, .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Mobile Devices (768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px; /* Further adjust container padding for mobile */
+    }
+    .navbar {
+        flex-wrap: wrap; /* Allow wrapping for logo and menu */
+        justify-content: space-between;
+    }
+
+    .nav-logo {
+        margin-right: auto; /* Push logo to left, hamburger to right */
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--background-dark);
+        position: absolute;
+        top: 70px; /* Adjust based on header height */
+        left: 0;
+        transform: translateX(-100%); /* Hide menu off-screen */
+        transition: transform 0.3s ease-in-out;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .nav-menu.active {
+        transform: translateX(0); /* Show menu */
+    }
+
+    .nav-item {
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .nav-link::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger on mobile */
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hero-section .name {
+        font-size: 3em; /* Further adjust font size for mobile */
+    }
+
+    .typewriter-container {
+        font-size: 1.5em; /* Further adjust typewriter text size for mobile */
+    }
+
+    /* Further adjust size for mobile */
+    .social-icon {
+        width: 40px; /* Even smaller for mobile */
+        height: 40px;
+        font-size: 1.2em; /* Adjust icon size */
+    }
+    .hero-section .social-links {
+        justify-content: center; /* Ensure centered on mobile */
+        gap: 10px; /* Reduce gap for smaller screens */
+    }
+
+    .section-title {
+        font-size: 2.5em;
+    }
+
+    .about-text h3 {
+        font-size: 1.8em;
+    }
+
+    .about-text p {
+        font-size: 1em;
+    }
+
+    .skills-grid, .portfolio-grid {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+    }
+
+    .contact-info-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info-item {
+        max-width: 80%; /* Adjust width for small screens */
+    }
+}
+
+/* Small Mobile Devices (480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px; /* Even smaller padding on very small devices */
+    }
+    .hero-section .name {
+        font-size: 2.5em;
+    }
+
+    .typewriter-container {
+        font-size: 1.2em;
+    }
+
+    /* Smallest size for very small mobile */
+    .social-icon {
+        width: 45px; /* Smallest size */
+        height: 45px;
+        font-size: 1.1em; /* Adjust icon size */
+    }
+    .hero-section .social-links {
+        justify-content: center; /* Ensure centered on small mobile */
+        gap: 8px; /* Further reduce gap */
+    }
+
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .about-text h3 {
+        font-size: 1.6em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .portfolio-item h3 {
+        font-size: 1.5em;
+    }
+
+    .portfolio-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .portfolio-links .btn-link {
+        font-size: 0.9em;
+    }
+}
+
+/* Ensure main element doesn't interfere with full-height hero */
+main {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
